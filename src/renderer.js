@@ -26,6 +26,12 @@
  * ```
  */
 
-import './index.css';
+// import './index.css';
 
-console.log('👋 This message is being logged by "renderer.js", included via Vite');
+// console.log('👋 This message is being logged by "renderer.js", included via Vite');
+const newWindowBtn = document.getElementById('new-window')
+
+newWindowBtn.addEventListener('click', (event) => {
+  const url = '/websites/edu.gcfglobal.org/index.html'
+  window.electronAPI.newWindow({ url, width: 400, height: 320 })
+})
