@@ -1,6 +1,9 @@
+//@ts-check
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, shell } = require('electron/main')
+const { app, BrowserWindow, ipcMain } = require('electron/main')
+const { shell } = require('electron')
 const path = require('node:path')
+const fs = require("node:fs");
 
 ipcMain.on('new-window', (event, { url, width, height }) => {
   const win = new BrowserWindow({ width, height })
@@ -50,3 +53,56 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipcMain.handle("find-the-files", (event) => {
+  return findAll("C:/websites/edu.gcfglobal.org");
+})
+
+/**
+ * findAll recursively searches through the websites dir at the
+ * root and returns an array of filepaths to the index.html files
+ * in all subdirectories
+ * @param {string} dir
+ * @returns {string[]}
+ */
+const findAll = (dir) => {
+  let indexFiles = [];
+  recursiveSearcher(dir, (dirent) => {
+    indexFiles.push({name: path.basename(dirent.parentPath), path: path.join(dirent.parentPath, dirent.name),});
+  });
+  return indexFiles;
+};
+
+/**
+ * @callback Processor
+ * @param {fs.Dirent} dirent
+ */
+
+/**
+ * recursiveSearcher
+ *
+ * Recursively navigates through given directory and passes the first index.html
+ * file to the callback function for further processing.
+ * NOTE: remember to give your recursive functions a callback to process the data.
+ * @param {string} dir
+ * @param {Processor} cb
+ */
+const recursiveSearcher = (dir, cb) => {
+  const dirArr = fs.readdirSync(dir, { withFileTypes: true });
+  const indexFilter = dirArr.filter((ent) => ent.name === "tutorial.html");
+  for (const dirent of dirArr) {
+    if (
+      (dirent.isDirectory() || dirent.isSymbolicLink()) &&
+      indexFilter.length === 0
+    ) {
+      recursiveSearcher(path.join(dirent.parentPath, dirent.name), cb);
+    } else if (dirent.isFile()) {
+      if (
+        path.extname(path.join(dirent.parentPath, dirent.name)) === ".html" &&
+        dirent.name === "tutorial.html"
+      ) {
+        cb(dirent);
+      }
+    }
+  }
+};

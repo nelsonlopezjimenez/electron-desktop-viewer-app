@@ -1,40 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Computer &amp; Technology Basics</title>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="./src/index.css">
 </head>
 <body>
-  <h2>Create a new window</h2>
-  <h3>Supports: Win, macOS, Linux <span>|</span> Process: Main</h3>
-  <button id="new-window">View Demo</button>
-  <p>The <code>BrowserWindow</code> module gives you the ability to create new windows in your app.</p>
-  <p>There are a lot of options when creating a new window. A few are in this demo, but visit the <a href="https://www.electronjs.org/docs/latest/api/browser-window">documentation<span>(opens in new window)</span></a>
-  
-  <ul style='background-color: bisque;' class="level-1">
-
-        <li><span><a class="all-topics-tutorial-link" href="file:///C:/websites/edu.gcfglobal.org/en/computerbasics/tutorial.html">Computer Basics</a></span></li>
-
-        <!-- <li><span><a class="all-topics-tutorial-link" href="file:///C:/websites/edu.gcfglobal.org//en/basic-computer-skills/tutorial.html">Basic Computer Skills</a></span>
-        </li>
-
-        <li><span><a class="all-topics-tutorial-link" href="file:///C:/websites/edu.gcfglobal.org//en/mousetutorial/tutorial.html">Mouse Tutorial</a></span></li>
-
-        <li><span><a class="all-topics-tutorial-link" href="file:///C:/websites/edu.gcfglobal.org//en/typing/tutorial.html">Typing Tutorial</a></span></li>
-
-        <li><span><a class="all-topics-tutorial-link" href="file:///C:/websites/edu.gcfglobal.org//en/computer-science/tutorial.html">Computer Science</a></span></li>
-
-        <li><span><a class="all-topics-tutorial-link" href="file:///C:/websites/edu.gcfglobal.org//en/techsavvy/tutorial.html">Tech Savvy Tips and Tricks</a></span></li> -->
+    <header id="header">
+     <h1>Computer Basics</h1><br />
+     <div id="nav">
+    <ul id="link-li">
+  <li id="showTuts">Tutorials</li>
+  <li id="backBtn">Back</li>
+  </ul>
+</div>
+    </header>
+    <div id="categories-container">
+      <ul id="categories">
 
       </ul>
-  
-    <div>
-    <h2>ProTip</h2>
-    <strong>Use an invisible browser window to run background tasks.</strong>
-    <p>You can set a new browser window to not be shown (be invisible) in order to use that additional renderer process as a kind of new thread in which to run JavaScript in the background of your app. You do this by setting the <code>show</code> property to <code>false</code> when defining the new window.</p>
-    <pre><code><span>var</span> win = <span>new</span> BrowserWindow({
-  <span>width</span>: <span>400</span>, <span>height</span>: <span>225</span>, <span>show</span>: <span>false</span>
-})</code></pre>
-  </div>
-  <script src="renderer.js"></script>
+    </div>
+    <iframe id="content-viewer" class="hidden"></iframe>
+
+  <script src="./src/renderer.js"></script>
 </body>
 </html>
