@@ -1,9 +1,14 @@
 //@ts-check
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require('electron/main')
-const { shell } = require('electron')
+const { app, Menu, BrowserWindow, ipcMain , dialog} = require('electron/main')
+const { shell, MenuItem, BaseWindow } = require('electron')
 const path = require('node:path')
 const fs = require("node:fs");
+
+/**
+ * @type {Menu}
+ */
+const appMenu = new Menu()
 
 ipcMain.on('new-window', (event, { url, width, height }) => {
   const win = new BrowserWindow({ width, height })
@@ -20,6 +25,20 @@ function createWindow () {
      
     }
   })
+
+  appMenu.append(new MenuItem({label: 'About', click: () => {
+    dialog.showMessageBox(mainWindow, {
+      title: "About",
+      type: "info",
+      message: "Author: Rocky Connor <Incarcerated CA>"
+    })
+  }}))
+  
+  Menu.setApplicationMenu(appMenu)
+
+//  appMenu.items[0].click = (event, focusedWindow, focusedWebContent) => {
+//     console.log(event, focusedWindow, focusedWebContent)
+//   }
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
