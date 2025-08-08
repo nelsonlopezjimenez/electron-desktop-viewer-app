@@ -22,8 +22,9 @@ function createWindow () {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-     
-    }
+      nodeIntegration: false,
+      contextIsolation: true,
+    },
   })
 
   appMenu.append(new MenuItem({label: 'About', click: () => {
@@ -41,7 +42,22 @@ function createWindow () {
 //   }
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  // mainWindow.loadFile('../renderer/index.html')
+  // mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
+
+  // Load the index.html of the app.
+  const isDev = process.env.NODE_ENV === 'development';
+
+  if (isDev) {
+    mainWindow.loadURL('http://localhost:5173');
+  } else {
+    mainWindow.loadFile(path.join(__dirname, `../renderer/main_window/index.html`));
+  }
+
+   // Open DevTools in development
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools();
+  }
 
   // Open external links in the default browser
   mainWindow.webContents.on('will-navigate', (event, url) => {
