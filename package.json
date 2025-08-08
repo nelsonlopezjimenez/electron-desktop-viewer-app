@@ -1,7 +1,7 @@
 {
   "name": "Computer Basics",
   "productName": "computer-basics",
-  "version": "1.0.0",
+  "version": "1.13.0",
   "description": "My Electron application description",
   "main": ".vite/build/main.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "Rocky Connor <420711>",
+    "name": "Rocky Connor",
     "email": "none@tru.pris"
   },
   "license": "MIT",
