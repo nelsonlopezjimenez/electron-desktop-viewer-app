@@ -12,7 +12,7 @@
     "lint": "echo \"No linting configured\"",
     "extract": "tar -xvf node_modules.tgz"
   },
-  "keywords": [],
+  "keywords": ["edu.gcfglobal.org", "computer", "technology", "adult education", "internet basics"],
   "author": {
     "name": "Rocky Connor",
     "email": "none@tru.pris"
