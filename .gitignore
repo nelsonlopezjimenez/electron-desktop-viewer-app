@@ -91,3 +91,9 @@ typings/
 
 # Electron-Forge
 out/
+
+# mine
+*.zip
+*.tgz
+*.gz
+*.tar
