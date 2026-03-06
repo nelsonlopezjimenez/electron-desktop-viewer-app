@@ -1,37 +1,53 @@
 {
-  "name": "Computer Basics",
-  "productName": "computer-basics",
-  "version": "1.13.0",
-  "description": "My Electron application description",
-  "main": ".vite/build/main.js",
+  "name": "tron-viewer-elec",
+  "productName": "tronvi",
+  "version": "1.1.0",
+  "description": "Offline website/local file viewer",
+  "main": "out/main/index.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "extract": "tar -xvf node_modules.tgz"
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "package": "npm run build && electron-builder",
+    "lint": "echo \"No linting configured\""
   },
-  "keywords": ["edu.gcfglobal.org", "computer", "technology", "adult education", "internet basics"],
+  "keywords": [
+    "computer",
+    "technology",
+    "adult education"
+  ],
   "author": {
-    "name": "Rocky Connor",
-    "email": "none@tru.pris"
+    "name": "Nelson Lopez",
+    "email": "nd@ele.edu"
   },
   "license": "MIT",
   "devDependencies": {
-    "@electron-forge/cli": "^7.8.1",
-    "@electron-forge/maker-deb": "^7.8.1",
-    "@electron-forge/maker-rpm": "^7.8.1",
-    "@electron-forge/maker-squirrel": "^7.8.1",
-    "@electron-forge/maker-zip": "^7.8.1",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
-    "@electron-forge/plugin-fuses": "^7.8.1",
-    "@electron-forge/plugin-vite": "^7.8.1",
-    "@electron/fuses": "^1.8.0",
-    "electron": "37.2.3",
-    "vite": "^5.4.19"
+    "electron": "^40.8.0",
+    "electron-builder": "^26.8.1",
+    "electron-vite": "^5.0.0"
   },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+  "build": {
+    "appId": "com.computerbasics.app",
+    "productName": "Computer Basics",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    }
   }
 }
